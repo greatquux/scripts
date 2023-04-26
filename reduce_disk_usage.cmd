@@ -5,22 +5,29 @@ REM stupid programs just silently continue working without all that disk i/o
 
 REM service workers are the worst
 rd /s /q "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
-echo %date% > "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
+echo "%date%" > "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
+REM Teams seems to recreate this sometimes?
+attrib +r "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
 
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage"
-echo %date% > "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage"
-echo %date% > "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage"
-echo %date% > "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage"
+rd /s /q "%LocalAppData%\Google\Chrome\User Data\Guest Profile\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Guest Profile\Service Worker\CacheStorage"
 
 rd /s /q "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage"
-echo %date% > "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage"
-echo %date% > "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage"
+echo "%date%" > "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage"
 
 REM office diagnostics are also bad
 rd /s /q %Temp%\Diagnostics
-echo %date% > %Temp%\Diagnostics
+echo "%date%" > %Temp%\Diagnostics
+attrib +r %Temp%\Diagnostics
 rd /s /q "%Temp%\Outlook Logging"
-echo %date% > "%Temp%\Outlook Logging"
+echo "%date%" > "%Temp%\Outlook Logging"
+attrib +r "%Temp%\Outlook Logging"
+

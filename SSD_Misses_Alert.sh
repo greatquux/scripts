@@ -1,16 +1,17 @@
 #!/bin/sh
 
+# Script that should alert if we are having a lot
+# 	of SSD misses in Scale cluster
 # SSD misses limit for each category
 PATH=$PATH:/opt/scale/bin
-ONESEC_LIMIT=40
-ONEMIN_LIMIT=30
-FIVEMN_LIMIT=20
-FIFTMN_LIMIT=10
+ONESEC_LIMIT=100
+ONEMIN_LIMIT=100
+FIVEMN_LIMIT=100
+FIFTMN_LIMIT=100
 ALERT_EMAIL_FROM=hc3@papersolve.com
 ALERT_EMAIL_TO=mike@papersolve.com
 EMAIL_SERVER=10.2.68.3
-# ignore these VMs?
-#VM_IGNORE_LIST="bsw-archive ps-wazuh"
+
 # if SSD priority is less than this value, ignore it
 #	we set it that way so we don't care as much about it
 SSD_PRIORITY_THRESH=8
@@ -71,10 +72,15 @@ for vmrow in "${vmrows[@]}"; do
 		onemin=`echo $vmdisk_misses | awk '{print  $8}'`; onemin=${onemin%.*}
 		fivemn=`echo $vmdisk_misses | awk '{print  $9}'`; fivemn=${fivemn%.*}
 		fiftmn=`echo $vmdisk_misses | awk '{print $10}'`; fiftmn=${fiftmn%.*}
-		# alert me if misses are "too high"
-		#if [ $onesec -gt $ONESEC_LIMIT ]; then alertMe; continue; fi
-		#if [ $onemin -gt $ONEMIN_LIMIT ]; then alertMe; continue; fi
-		#if [ $fivemn -gt $FIVEMN_LIMIT ]; then alertMe; continue; fi
-		if [ $fiftmn -gt $FIFTMN_LIMIT ]; then alertMe; continue; fi	
+		# alert me if misses are "too high" consistently
+		if [ $onesec -gt $ONESEC_LIMIT ]; then
+			if [ $onemin -gt $ONEMIN_LIMIT ]; then
+				if [ $fivemn -gt $FIVEMN_LIMIT ]; then 
+					if [ $fiftmn -gt $FIFTMN_LIMIT ]; then 
+						alertMe
+					fi
+				fi
+			fi
+		fi
 	done
 done
