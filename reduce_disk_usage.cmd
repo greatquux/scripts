@@ -2,11 +2,14 @@ REM i/o reducing script for terminal servers
 REM aims to srsly reduce the amount of i/o stupid programs use
 REM without breaking them; do this by replacing folder with a file
 REM stupid programs just silently continue working without all that disk i/o
+REM make sure this starts up in user session - place in
+REM C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 
-REM service workers are the worst
+REM service workers are the worst for i/o
+REM mkdir in case cleanup script removed it
+mkdir "%AppData%\Microsoft\Teams\Service Worker"
 rd /s /q "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
 echo "%date%" > "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
-REM Teams seems to recreate this sometimes?
 attrib +r "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
 
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage"
