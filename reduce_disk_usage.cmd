@@ -42,22 +42,22 @@ REM service workers are the worst for i/o
 REM mkdir in case cleanup script removed it
 mkdir "%AppData%\Microsoft\Teams\Service Worker"  >> %logfile% 2>&1
 rd /s /q "%AppData%\Microsoft\Teams\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%AppData%\Microsoft\Teams\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%AppData%\Microsoft\Teams\Service Worker\CacheStorage"
 attrib +r "%AppData%\Microsoft\Teams\Service Worker\CacheStorage" >> %logfile% 2>&1
 
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Default\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 1\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Profile 2\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Guest Profile\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Guest Profile\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\Google\Chrome\User Data\Guest Profile\Service Worker\CacheStorage"
 
 rd /s /q "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage"
 rd /s /q "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
-echo "%date%" > "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage" >> %logfile% 2>&1
+echo "%date%" > "%LocalAppData%\BraveSoftware\Brave-Browser\User Data\Default\Service Worker\CacheStorage"
 
 
 REM stop Teams from automatically starting up
